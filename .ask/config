@@ -1,20 +1,44 @@
 {
   "deploy_settings": {
     "default": {
-      "skill_id": "",
+      "skill_id": "amzn1.ask.skill.c9867d30-289e-4443-b7e1-adfebe924af1",
       "resources": {
         "lambda": [
           {
-            "functionName": "",
             "alexaUsage": [
               "custom/default"
             ],
-            "runtime": "python3.6",
-            "handler": "lambda_function.lambda_handler"
+            "arn": "arn:aws:lambda:us-east-1:452774869519:function:ask-custom-bus-checker-2_0-default",
+            "awsRegion": "us-east-1",
+            "codeUri": "lambda/py/lambda_upload",
+            "functionName": "ask-custom-bus-checker-2_0-default",
+            "handler": "lambda_function.lambda_handler",
+            "revisionId": "16f53a83-0c0c-4ee6-8c2b-93405c3864b5",
+            "runtime": "python3.6"
           }
-        ]
+        ],
+        "manifest": {
+          "eTag": "8fadfdcf896a37c8f08198a3a6af629f"
+        },
+        "interactionModel": {
+          "en-AU": {
+            "eTag": "200e4c98767a5968a164ace217a697a1"
+          },
+          "en-CA": {
+            "eTag": "200e4c98767a5968a164ace217a697a1"
+          },
+          "en-IN": {
+            "eTag": "200e4c98767a5968a164ace217a697a1"
+          },
+          "en-GB": {
+            "eTag": "200e4c98767a5968a164ace217a697a1"
+          },
+          "en-US": {
+            "eTag": "41ec21470d98767ad8b1364c7d714edb"
+          }
+        }
       },
       "merge": {}
     }
   }
- }
+}

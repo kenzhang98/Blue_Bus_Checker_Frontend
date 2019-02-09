@@ -3,6 +3,7 @@
 
 import random
 import logging
+import requests as req 
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import (
@@ -19,7 +20,7 @@ from ask_sdk_model import Response
 # TODO: The items below this comment need your attention.
 # =========================================================================================================================================
 SKILL_NAME = "Space Facts"
-GET_FACT_MESSAGE = "Here's your fact: "
+GET_FACT_MESSAGE = "what's up: "
 HELP_MESSAGE = "You can say tell me a space fact, or, you can say exit... What can I help you with?"
 HELP_REPROMPT = "What can I help you with?"
 STOP_MESSAGE = "Goodbye!"
@@ -55,6 +56,8 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
+def helper():
+    return("test")
 
 # Built-in Intent Handlers
 class GetNewFactHandler(AbstractRequestHandler):
@@ -66,6 +69,7 @@ class GetNewFactHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        print("test")
         logger.info("In GetNewFactHandler")
 
         random_fact = random.choice(data)
