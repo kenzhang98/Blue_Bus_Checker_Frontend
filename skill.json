@@ -3,71 +3,11 @@
     "publishingInformation": {
       "locales": {
         "en-AU": {
-          "summary": "Learn fun facts about space.",
-          "examplePhrases": [
-            "Alexa open space facts",
-            "Alexa ask space facts for a fact",
-            "Alexa tell space facts to tell me trivia"
-          ],
-          "keywords": [
-            "space",
-            "facts",
-            "trivia"
-          ],
-          "name": "bus-checker-2.0",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
-        },
-        "en-CA": {
-          "summary": "Learn fun facts about space.",
-          "examplePhrases": [
-            "Alexa open space facts",
-            "Alexa ask space facts for a fact",
-            "Alexa tell space facts to tell me trivia"
-          ],
-          "keywords": [
-            "space",
-            "facts",
-            "trivia"
-          ],
-          "name": "bus-checker-2.0",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
-        },
-        "en-GB": {
-          "summary": "Learn fun facts about space.",
-          "examplePhrases": [
-            "Alexa open space facts",
-            "Alexa ask space facts for a fact",
-            "Alexa tell space facts to tell me trivia"
-          ],
-          "keywords": [
-            "space",
-            "facts",
-            "trivia"
-          ],
-          "name": "bus-checker-2.0",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
-        },
-        "en-IN": {
-          "summary": "Learn fun facts about space.",
-          "examplePhrases": [
-            "Alexa open space facts",
-            "Alexa ask space facts for a fact",
-            "Alexa tell space facts to tell me trivia"
-          ],
-          "keywords": [
-            "space",
-            "facts",
-            "trivia"
-          ],
-          "name": "bus-checker-2.0",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
-        },
-        "en-US": {
-          "summary": "Check how far away your buses are and get ready to leave!",
+          "summary": "Check the arrival time for blue buses.",
           "examplePhrases": [
             "Alexa open blue bus checker",
-            "Alexa launch blue bus checker",
-            "Alexa ask blue bus checker for bus information"
+            "Alexa check the arrival bus for Bursley",
+            "Alexa when is the next bus arriving for Baits two"
           ],
           "keywords": [
             "blue",
@@ -75,7 +15,67 @@
             "checker"
           ],
           "name": "bus-checker-2.0",
-          "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+          "description": "Ask for bus arrival times, and plan your commute accordingly.\n\nTo start, just say \"Alexa, open blue bus checker\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+        },
+        "en-CA": {
+          "summary": "Check the arrival time for blue buses.",
+          "examplePhrases": [
+            "Alexa open blue bus checker",
+            "Alexa check the arrival bus for Bursley",
+            "Alexa when is the next bus arriving for Baits two"
+          ],
+          "keywords": [
+            "blue",
+            "bus",
+            "checker"
+          ],
+          "name": "bus-checker-2.0",
+          "description": "Ask for bus arrival times, and plan your commute accordingly.\n\nTo start, just say \"Alexa, open blue bus checker\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+        },
+        "en-GB": {
+          "summary": "Check the arrival time for blue buses.",
+          "examplePhrases": [
+            "Alexa open blue bus checker",
+            "Alexa check the arrival bus for Bursley",
+            "Alexa when is the next bus arriving for Baits two"
+          ],
+          "keywords": [
+            "blue",
+            "bus",
+            "checker"
+          ],
+          "name": "bus-checker-2.0",
+          "description": "Ask for bus arrival times, and plan your commute accordingly.\n\nTo start, just say \"Alexa, open blue bus checker\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+        },
+        "en-IN": {
+          "summary": "Check the arrival time for blue buses.",
+          "examplePhrases": [
+            "Alexa open blue bus checker",
+            "Alexa check the arrival bus for Bursley",
+            "Alexa when is the next bus arriving for Baits two"
+          ],
+          "keywords": [
+            "blue",
+            "bus",
+            "checker"
+          ],
+          "name": "bus-checker-2.0",
+          "description": "Ask for bus arrival times, and plan your commute accordingly.\n\nTo start, just say \"Alexa, open blue bus checker\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
+        },
+        "en-US": {
+          "summary": "Check the arrival time for blue buses.",
+          "examplePhrases": [
+            "Alexa open blue bus checker",
+            "Alexa check the arrival bus for Bursley",
+            "Alexa when is the next bus arriving for Baits two"
+          ],
+          "keywords": [
+            "blue",
+            "bus",
+            "checker"
+          ],
+          "name": "bus-checker-2.0",
+          "description": "Ask for bus arrival times, and plan your commute accordingly.\n\nTo start, just say \"Alexa, open blue bus checker\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
         }
       },
       "category": "KNOWLEDGE_AND_TRIVIA"
