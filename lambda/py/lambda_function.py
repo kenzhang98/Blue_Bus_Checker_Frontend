@@ -76,12 +76,16 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
         logger.info("In GetBusStopIntentHandler")
 
         speech = "in GetBusStopIntentHandler"
+
         # slots = handler_input.request_envelope.request.intent.slots
         # bus_stop_name = str(slots["busStop"].value)
 
         # busStopName = util.get_resolved_value(handler_input.request_envelope.request, "busStop")
 
-        busStopName = this.event.request.intent.slots.busStop.value
+        busStopName = str(handler_input.request_envelope.request.intent.slots["busStop"].value)
+        # deviceid = this.event.context.System.device.deviceid
+
+        print("test: " + busStopName)
 
         # if busStopName is None:
         #     busStopName = "Baits One"
@@ -89,7 +93,7 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
         # handler_input.response_builder.speak(busStopName).set_card(
         #     SimpleCard(SKILL_NAME, speech))
 
-        handler_input.response_builder.speak(busStopName).set_should_end_session(True)
+        handler_input.response_builder.speak(speech).set_should_end_session(True)
         
         return handler_input.response_builder.response
 
@@ -104,6 +108,10 @@ class LaunchIntentHandler(AbstractRequestHandler):
 
         speech = WELCOME_MESSAGE
         random_fact = "testing"
+
+        deviceid = str(handler_input.request_envelope.context.system.device.device_id)
+        
+        print(deviceid)
 
         handler_input.response_builder.speak(speech).ask(
             HELP_REPROMPT).set_card(SimpleCard(
