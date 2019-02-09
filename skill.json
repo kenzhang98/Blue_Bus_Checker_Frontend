@@ -63,16 +63,16 @@
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""
         },
         "en-US": {
-          "summary": "Learn fun facts about space.",
+          "summary": "Check how far away your buses are and get ready to leave!",
           "examplePhrases": [
-            "Alexa open space facts",
-            "Alexa ask space facts for a fact",
-            "Alexa tell space facts to tell me trivia"
+            "Alexa open blue bus checker",
+            "Alexa launch blue bus checker",
+            "Alexa ask blue bus checker for bus information"
           ],
           "keywords": [
-            "space",
-            "facts",
-            "trivia"
+            "blue",
+            "bus",
+            "checker"
           ],
           "name": "bus-checker-2.0",
           "description": "Ask for Space Facts, and learn about what really matters, like dark matter.\n\nSpace Facts provides fun the whole family can enjoy and is guaranteed to make you smarter.\n\nTo start, just say \"Alexa, launch Space Facts\" or \"Alexa, open Space Facts\" to get a fact\".\n\nAt anytime, you can stop by saying \"Alexa, stop\""

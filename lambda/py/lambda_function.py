@@ -56,9 +56,6 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-def helper():
-    return("test")
-
 # Built-in Intent Handlers
 class GetNewFactHandler(AbstractRequestHandler):
     """Handler for Skill Launch and GetNewFact Intent."""
@@ -69,7 +66,7 @@ class GetNewFactHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        print("test")
+        print("test whats up")
         logger.info("In GetNewFactHandler")
 
         random_fact = random.choice(data)
