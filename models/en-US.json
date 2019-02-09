@@ -65,7 +65,7 @@
             },
             {
               "name": {
-                "value": "Rackham building"
+                "value": "Rackham"
               }
             },
             {
@@ -75,7 +75,7 @@
             },
             {
               "name": {
-                "value": "Stockwell Outbound"
+                "value": "Stockwell"
               }
             },
             {
@@ -91,6 +91,31 @@
             {
               "name": {
                 "value": "Pierpont inbound"
+              }
+            },
+            {
+              "name": {
+                "value": "Mitchell field"
+              }
+            },
+            {
+              "name": {
+                "value": "glen inbound"
+              }
+            },
+            {
+              "name": {
+                "value": "fuller road"
+              }
+            },
+            {
+              "name": {
+                "value": "glen outbound"
+              }
+            },
+            {
+              "name": {
+                "value": "pierpont inbound"
               }
             },
             {

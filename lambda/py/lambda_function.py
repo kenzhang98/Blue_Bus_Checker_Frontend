@@ -77,15 +77,46 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
 
         speech = "in GetBusStopIntentHandler"
 
-        # slots = handler_input.request_envelope.request.intent.slots
-        # bus_stop_name = str(slots["busStop"].value)
+        inputName = str(handler_input.request_envelope.request.intent.slots["busStop"].value)
+        outputName = ""
+        response = ""
 
-        # busStopName = util.get_resolved_value(handler_input.request_envelope.request, "busStop")
+        if(inputName == "Baits one"):
+            outputName = "Baits I"
+        elif(inputName == "Baits two Inbound"):
+            outputName == "Baits II Inbound"
+        elif(inputName == "Bursley Inbound" ):
+            outputName == "Bursley Hall Inbound"
+        elif(inputName == "Pierpont inbound"):
+            outputName == "Pierpont Commons, Murfin Inbound"
+        elif(inputName == "Mitchell field"):
+            outputName == "Fuller Rd at Lot NC-78, Mitchell Field (1)"
+        elif(inputName == "glen inbound"):
+            outputName == "Glen Inbound"
+        elif(inputName == "Rackham"):
+            outputName == "Rackham Bldg"
+        elif(inputName == "CCTC"):
+            outputName == "Central Campus Transit Center: Chemistry"
+        elif(inputName == "Stockwell"):
+            outputName == "Stockwell Hall Outbound"
+        elif(inputName == "Cardiovascular Center"):
+            outputName == "Cardiovascular Center"
+        elif(inputName == "Zina Pitcher"):
+            outputName == "Zina Pitcher"
+        elif(inputName == "glen outbound"):
+            outputName == "Glen/Catherine Outbound"
+        elif(inputName == "fuller road"):
+            outputName == "Fuller Rd at Mitchell Field, Lot M-75"
+        elif(inputName == "pierpont outbound"):
+            outputName == "Pierpont Commons, Murfin Outbound"
+        elif(inputName == "bursley outbound"):
+            outputName == "Bursley Hall Outbound"
+        elif(inputName == "Baits two outbound"):
+            outputName == "Baits II Outbound"
+        else:
+            response = "I dont understand the stop name."
 
-        busStopName = str(handler_input.request_envelope.request.intent.slots["busStop"].value)
-        # deviceid = this.event.context.System.device.deviceid
-
-        print("test: " + busStopName)
+        print("test: " + inputName)
 
         # if busStopName is None:
         #     busStopName = "Baits One"
@@ -93,7 +124,7 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
         # handler_input.response_builder.speak(busStopName).set_card(
         #     SimpleCard(SKILL_NAME, speech))
 
-        handler_input.response_builder.speak(speech).set_should_end_session(True)
+        handler_input.response_builder.speak(response).set_should_end_session(True)
         
         return handler_input.response_builder.response
 
@@ -110,7 +141,7 @@ class LaunchIntentHandler(AbstractRequestHandler):
         random_fact = "testing"
 
         deviceid = str(handler_input.request_envelope.context.system.device.device_id)
-        
+
         print(deviceid)
 
         handler_input.response_builder.speak(speech).ask(
