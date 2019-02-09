@@ -13,12 +13,12 @@
             "codeUri": "lambda/py/lambda_upload",
             "functionName": "ask-custom-bus-checker-2_0-default",
             "handler": "lambda_function.lambda_handler",
-            "revisionId": "61cd8e76-33b7-4996-8900-d30000d835cd",
+            "revisionId": "093f5df8-fb60-4d02-954a-6cea749e060f",
             "runtime": "python3.6"
           }
         ],
         "manifest": {
-          "eTag": "24b95d25a89149fbd64bd91a29723988"
+          "eTag": "b3aba8852c95d170c86decb4d5597c4a"
         },
         "interactionModel": {
           "en-AU": {

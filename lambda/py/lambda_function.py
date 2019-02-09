@@ -13,6 +13,8 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
+# from alexa import util, data
+
 
 # =========================================================================================================================================
 # TODO: The items below this comment need your attention.
@@ -63,26 +65,6 @@ sb = SkillBuilder()
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
-# # Built-in Intent Handlers
-# class GetNewFactHandler(AbstractRequestHandler):
-#     """Handler for Skill Launch and GetNewFact Intent."""
-#     def can_handle(self, handler_input):
-#         # type: (HandlerInput) -> bool
-#         return (is_request_type("LaunchRequest")(handler_input) or
-#                 is_intent_name("GetNewSpaceFactIntent")(handler_input))
-
-#     def handle(self, handler_input):
-#         # type: (HandlerInput) -> Response
-#         print("test whats up")
-#         logger.info("In GetNewFactHandler")
-
-#         random_fact = random.choice(data)
-#         speech = WELCOME_MESSAGE + random_fact
-
-#         handler_input.response_builder.speak(speech).set_card(
-#             SimpleCard(SKILL_NAME, random_fact))
-#         return handler_input.response_builder.response
-
 # Built-in Intent Handlers
 class GetBusStopIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
@@ -93,11 +75,22 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         logger.info("In GetBusStopIntentHandler")
 
-        speech = WELCOME_MESSAGE
-        random_fact = "testing"
+        speech = "in GetBusStopIntentHandler"
+        # slots = handler_input.request_envelope.request.intent.slots
+        # bus_stop_name = str(slots["busStop"].value)
 
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(SKILL_NAME, random_fact))
+        # busStopName = util.get_resolved_value(handler_input.request_envelope.request, "busStop")
+
+        busStopName = this.event.request.intent.slots.busStop.value
+
+        # if busStopName is None:
+        #     busStopName = "Baits One"
+
+        # handler_input.response_builder.speak(busStopName).set_card(
+        #     SimpleCard(SKILL_NAME, speech))
+
+        handler_input.response_builder.speak(busStopName).set_should_end_session(True)
+        
         return handler_input.response_builder.response
 
 class LaunchIntentHandler(AbstractRequestHandler):
@@ -112,8 +105,9 @@ class LaunchIntentHandler(AbstractRequestHandler):
         speech = WELCOME_MESSAGE
         random_fact = "testing"
 
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(SKILL_NAME, random_fact))
+        handler_input.response_builder.speak(speech).ask(
+            HELP_REPROMPT).set_card(SimpleCard(
+                SKILL_NAME, random_fact))
         return handler_input.response_builder.response
 
 
@@ -220,7 +214,8 @@ class ResponseLogger(AbstractResponseInterceptor):
 
 
 # Register intent handlers
-sb.add_request_handler(GetNewFactHandler())
+sb.add_request_handler(GetBusStopIntentHandler())
+sb.add_request_handler(LaunchIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())

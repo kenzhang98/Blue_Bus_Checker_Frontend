@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
-"""Simple fact sample app."""
 
-import random
 import logging
-import requests as req 
+import requests as req  
 
 from ask_sdk_core.skill_builder import SkillBuilder
 from ask_sdk_core.dispatch_components import (
@@ -15,16 +13,27 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
+from alexa import util, data
+
 
 # =========================================================================================================================================
 # TODO: The items below this comment need your attention.
 # =========================================================================================================================================
-SKILL_NAME = "Space Facts"
-GET_FACT_MESSAGE = "what's up: "
-HELP_MESSAGE = "You can say tell me a space fact, or, you can say exit... What can I help you with?"
+# SKILL_NAME = "Space Facts"
+# GET_FACT_MESSAGE = "what's up: "
+# HELP_MESSAGE = "You can say tell me a space fact, or, you can say exit... What can I help you with?"
+# HELP_REPROMPT = "What can I help you with?"
+# STOP_MESSAGE = "Goodbye!"
+# FALLBACK_MESSAGE = "The Space Facts skill can't help you with that.  It can help you discover facts about space if you say tell me a space fact. What can I help you with?"
+# FALLBACK_REPROMPT = 'What can I help you with?'
+# EXCEPTION_MESSAGE = "Sorry. I cannot help you with that."
+
+SKILL_NAME = "Blue Bus Checker"
+WELCOME_MESSAGE = "Which bus information would you like to know?"
+HELP_MESSAGE = "You can say when is the next bus for Bursley Inbound, or, you can say exit... What can I help you with?"
 HELP_REPROMPT = "What can I help you with?"
 STOP_MESSAGE = "Goodbye!"
-FALLBACK_MESSAGE = "The Space Facts skill can't help you with that.  It can help you discover facts about space if you say tell me a space fact. What can I help you with?"
+FALLBACK_MESSAGE = "The Blue Bus Checker Skill can't help you with that.  It can help you track the buses and plan your commute ahead of time"
 FALLBACK_REPROMPT = 'What can I help you with?'
 EXCEPTION_MESSAGE = "Sorry. I cannot help you with that."
 
@@ -32,21 +41,21 @@ EXCEPTION_MESSAGE = "Sorry. I cannot help you with that."
 # TODO: Replace this data with your own.  You can find translations of this data at http://github.com/alexa/skill-sample-python-fact/lambda/data
 # =========================================================================================================================================
 
-data = [
-  'A year on Mercury is just 88 days long.',
-  'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-  'Venus rotates counter-clockwise, possibly because of a collision in the past with an asteroid.',
-  'On Mars, the Sun appears about half the size as it does on Earth.',
-  'Earth is the only planet not named after a god.',
-  'Jupiter has the shortest day of all the planets.',
-  'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5 billion years.',
-  'The Sun contains 99.86% of the mass in the Solar System.',
-  'The Sun is an almost perfect sphere.',
-  'A total solar eclipse can happen once every 1 to 2 years. This makes them a rare event.',
-  'Saturn radiates two and a half times more energy into space than it receives from the sun.',
-  'The temperature inside the Sun can reach 15 million degrees Celsius.',
-  'The Moon is moving approximately 3.8 cm away from our planet every year.',
-]
+# data = [
+#   'A year on Mercury is just 88 days long.',
+#   'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
+#   'Venus rotates counter-clockwise, possibly because of a collision in the past with an asteroid.',
+#   'On Mars, the Sun appears about half the size as it does on Earth.',
+#   'Earth is the only planet not named after a god.',
+#   'Jupiter has the shortest day of all the planets.',
+#   'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5 billion years.',
+#   'The Sun contains 99.86% of the mass in the Solar System.',
+#   'The Sun is an almost perfect sphere.',
+#   'A total solar eclipse can happen once every 1 to 2 years. This makes them a rare event.',
+#   'Saturn radiates two and a half times more energy into space than it receives from the sun.',
+#   'The temperature inside the Sun can reach 15 million degrees Celsius.',
+#   'The Moon is moving approximately 3.8 cm away from our planet every year.',
+# ]
 
 # =========================================================================================================================================
 # Editing anything below this line might break your skill.
@@ -57,23 +66,45 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 
 # Built-in Intent Handlers
-class GetNewFactHandler(AbstractRequestHandler):
-    """Handler for Skill Launch and GetNewFact Intent."""
+class GetBusStopIntentHandler(AbstractRequestHandler):
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return (is_request_type("LaunchRequest")(handler_input) or
-                is_intent_name("GetNewSpaceFactIntent")(handler_input))
+        return (is_intent_name("GetBusStopIntent")(handler_input))
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        print("test whats up")
-        logger.info("In GetNewFactHandler")
+        logger.info("In GetBusStopIntentHandler")
 
-        random_fact = random.choice(data)
-        speech = GET_FACT_MESSAGE + random_fact
+        speech = "in GetBusStopIntentHandler"
+        # slots = handler_input.request_envelope.request.intent.slots
+        # bus_stop_name = str(slots["busStop"].value)
 
-        handler_input.response_builder.speak(speech).set_card(
-            SimpleCard(SKILL_NAME, random_fact))
+        busStopName = util.get_resolved_value(handler_input.request_envelope.request, "busStop")
+        # if busStopName is None:
+        #     busStopName = "Baits One"
+
+        # handler_input.response_builder.speak(busStopName).set_card(
+        #     SimpleCard(SKILL_NAME, speech))
+
+        handler_input.response_builder.speak(busStopName).set_should_end_session(True)
+        
+        return handler_input.response_builder.response
+
+class LaunchIntentHandler(AbstractRequestHandler):
+    """Handler for Skill Launch"""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return (is_request_type("LaunchRequest")(handler_input))
+
+    def handle(self, handler_input):
+        logger.info("In LaunchIntentHandler")
+
+        speech = WELCOME_MESSAGE
+        random_fact = "testing"
+
+        handler_input.response_builder.speak(speech).ask(
+            HELP_REPROMPT).set_card(SimpleCard(
+                SKILL_NAME, random_fact))
         return handler_input.response_builder.response
 
 
@@ -180,7 +211,8 @@ class ResponseLogger(AbstractResponseInterceptor):
 
 
 # Register intent handlers
-sb.add_request_handler(GetNewFactHandler())
+sb.add_request_handler(GetBusStopIntentHandler())
+sb.add_request_handler(LaunchIntentHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
