@@ -131,7 +131,7 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
         print("next_bus_time: " + str(next_bus_time[0]) + " " + str(next_bus_time[1]))
         # {"can_catch":true,"time_to_walk":8,"next_bus_time":[20,51]}
 
-        if(can_catch):
+        if(can_catch == "True"):
             response = "The next bus is arriving at " + str(next_bus_time[0]) + " " + str(next_bus_time[1]) + ". The walk to the bus stop will take about " + str(time_to_walk) + " minutes."
         else:
             response = "You are going to miss the next bus. The first bus that you can catch will come at " + str(next_bus_time[0]) + " " + str(next_bus_time[1]) + ". The walk to the bus stop will take about " + str(time_to_walk) + " minutes."
