@@ -13,21 +13,6 @@ from ask_sdk_core.handler_input import HandlerInput
 from ask_sdk_model.ui import SimpleCard
 from ask_sdk_model import Response
 
-# from alexa import util, data
-
-
-# =========================================================================================================================================
-# TODO: The items below this comment need your attention.
-# =========================================================================================================================================
-# SKILL_NAME = "Space Facts"
-# GET_FACT_MESSAGE = "what's up: "
-# HELP_MESSAGE = "You can say tell me a space fact, or, you can say exit... What can I help you with?"
-# HELP_REPROMPT = "What can I help you with?"
-# STOP_MESSAGE = "Goodbye!"
-# FALLBACK_MESSAGE = "The Space Facts skill can't help you with that.  It can help you discover facts about space if you say tell me a space fact. What can I help you with?"
-# FALLBACK_REPROMPT = 'What can I help you with?'
-# EXCEPTION_MESSAGE = "Sorry. I cannot help you with that."
-
 SKILL_NAME = "Blue Bus Checker"
 WELCOME_MESSAGE = "Which bus information would you like to know?"
 HELP_MESSAGE = "You can say when is the next bus for Bursley Inbound, or, you can say exit... What can I help you with?"
@@ -36,30 +21,6 @@ STOP_MESSAGE = "Goodbye!"
 FALLBACK_MESSAGE = "The Blue Bus Checker Skill can't help you with that.  It can help you track the buses and plan your commute ahead of time"
 FALLBACK_REPROMPT = 'What can I help you with?'
 EXCEPTION_MESSAGE = "Sorry. I cannot help you with that."
-
-# =========================================================================================================================================
-# TODO: Replace this data with your own.  You can find translations of this data at http://github.com/alexa/skill-sample-python-fact/lambda/data
-# =========================================================================================================================================
-
-# data = [
-#   'A year on Mercury is just 88 days long.',
-#   'Despite being farther from the Sun, Venus experiences higher temperatures than Mercury.',
-#   'Venus rotates counter-clockwise, possibly because of a collision in the past with an asteroid.',
-#   'On Mars, the Sun appears about half the size as it does on Earth.',
-#   'Earth is the only planet not named after a god.',
-#   'Jupiter has the shortest day of all the planets.',
-#   'The Milky Way galaxy will collide with the Andromeda Galaxy in about 5 billion years.',
-#   'The Sun contains 99.86% of the mass in the Solar System.',
-#   'The Sun is an almost perfect sphere.',
-#   'A total solar eclipse can happen once every 1 to 2 years. This makes them a rare event.',
-#   'Saturn radiates two and a half times more energy into space than it receives from the sun.',
-#   'The temperature inside the Sun can reach 15 million degrees Celsius.',
-#   'The Moon is moving approximately 3.8 cm away from our planet every year.',
-# ]
-
-# =========================================================================================================================================
-# Editing anything below this line might break your skill.
-# =========================================================================================================================================
 
 sb = SkillBuilder()
 logger = logging.getLogger(__name__)
@@ -119,17 +80,11 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
             handler_input.response_builder.speak(response).set_should_end_session(True)
 
         outputName = "+".join(outputName.split())
-        print("outputName: " + outputName)
         api_request = "https://v6lr81x979.execute-api.us-east-1.amazonaws.com/api/" + outputName
-        print("api_request: " + api_request)
         api_response = req.get(api_request).json()
         can_catch = str(api_response["can_catch"])
-        print("can_catch: " + can_catch)
         time_to_walk = str(api_response["time_to_walk"])
-        print("time_to_walk: " + time_to_walk)
         next_bus_time = api_response["next_bus_time"]
-        print("next_bus_time: " + str(next_bus_time[0]) + " " + str(next_bus_time[1]))
-        # {"can_catch":true,"time_to_walk":8,"next_bus_time":[20,51]}
 
         if(can_catch == "True"):
             response = "The next bus is arriving at " + str(next_bus_time[0]) + " " + str(next_bus_time[1]) + ". The walk to the bus stop will take about " + str(time_to_walk) + " minutes."
@@ -274,10 +229,6 @@ sb.add_request_handler(SessionEndedRequestHandler())
 
 # Register exception handlers
 sb.add_exception_handler(CatchAllExceptionHandler())
-
-# TODO: Uncomment the following lines of code for request, response logs.
-# sb.add_global_request_interceptor(RequestLogger())
-# sb.add_global_response_interceptor(ResponseLogger())
 
 # Handler name that is used on AWS lambda
 lambda_handler = sb.lambda_handler()
