@@ -79,50 +79,62 @@ class GetBusStopIntentHandler(AbstractRequestHandler):
 
         inputName = str(handler_input.request_envelope.request.intent.slots["busStop"].value)
         outputName = ""
-        response = ""
 
-        if(inputName == "Baits one"):
+        print("inputName: " + inputName)
+
+        if(inputName == "Baits 1".lower()):
             outputName = "Baits I"
-        elif(inputName == "Baits two Inbound"):
-            outputName == "Baits II Inbound"
-        elif(inputName == "Bursley Inbound" ):
-            outputName == "Bursley Hall Inbound"
-        elif(inputName == "Pierpont inbound"):
-            outputName == "Pierpont Commons, Murfin Inbound"
-        elif(inputName == "Mitchell field"):
-            outputName == "Fuller Rd at Lot NC-78, Mitchell Field (1)"
-        elif(inputName == "glen inbound"):
-            outputName == "Glen Inbound"
-        elif(inputName == "Rackham"):
-            outputName == "Rackham Bldg"
-        elif(inputName == "CCTC"):
-            outputName == "Central Campus Transit Center: Chemistry"
-        elif(inputName == "Stockwell"):
-            outputName == "Stockwell Hall Outbound"
-        elif(inputName == "Cardiovascular Center"):
-            outputName == "Cardiovascular Center"
-        elif(inputName == "Zina Pitcher"):
-            outputName == "Zina Pitcher"
-        elif(inputName == "glen outbound"):
-            outputName == "Glen/Catherine Outbound"
-        elif(inputName == "fuller road"):
-            outputName == "Fuller Rd at Mitchell Field, Lot M-75"
-        elif(inputName == "pierpont outbound"):
-            outputName == "Pierpont Commons, Murfin Outbound"
-        elif(inputName == "bursley outbound"):
-            outputName == "Bursley Hall Outbound"
-        elif(inputName == "Baits two outbound"):
-            outputName == "Baits II Outbound"
+        elif(inputName.lower() == "Baits 2 Inbound".lower()):
+            outputName = "Baits II Inbound"
+        elif(inputName.lower() == "Bursley Inbound".lower()):
+            outputName = "Bursley Hall Inbound"
+        elif(inputName.lower() == "Pierpont inbound".lower()):
+            outputName = "Pierpont Commons, Murfin Inbound"
+        elif(inputName.lower() == "Mitchell field".lower()):
+            outputName = "Fuller Rd at Lot NC-78, Mitchell Field (1)"
+        elif(inputName.lower() == "glen inbound".lower()):
+            outputName = "Glen Inbound"
+        elif(inputName.lower() == "Rackham".lower()):
+            outputName = "Rackham Bldg"
+        elif(inputName.lower() == "CCTC".lower()):
+            outputName = "Central Campus Transit Center: Chemistry"
+        elif(inputName.lower() == "Stockwell".lower()):
+            outputName = "Stockwell Hall Outbound"
+        elif(inputName.lower() == "Cardiovascular Center".lower()):
+            outputName = "Cardiovascular Center"
+        elif(inputName.lower() == "Zina Pitcher".lower()):
+            outputName = "Zina Pitcher"
+        elif(inputName.lower() == "glen outbound".lower()):
+            outputName = "Glen/Catherine Outbound"
+        elif(inputName.lower() == "fuller road".lower()):
+            outputName = "Fuller Rd at Mitchell Field, Lot M-75"
+        elif(inputName.lower() == "pierpont outbound".lower()):
+            outputName = "Pierpont Commons, Murfin Outbound"
+        elif(inputName.lower() == "Bursley Outbound".lower()):
+            outputName = "Bursley Hall Outbound"
+        elif(inputName.lower() == "Baits 2 outbound".lower()):
+            outputName = "Baits II Outbound"
         else:
             response = "I dont understand the stop name."
+            handler_input.response_builder.speak(response).set_should_end_session(True)
 
-        print("test: " + inputName)
+        outputName = "+".join(outputName.split())
+        print("outputName: " + outputName)
+        api_request = "https://v6lr81x979.execute-api.us-east-1.amazonaws.com/api/" + outputName
+        print("api_request: " + api_request)
+        api_response = req.get(api_request).json()
+        can_catch = str(api_response["can_catch"])
+        print("can_catch: " + can_catch)
+        time_to_walk = str(api_response["time_to_walk"])
+        print("time_to_walk: " + time_to_walk)
+        next_bus_time = api_response["next_bus_time"]
+        print("next_bus_time: " + str(next_bus_time[0]) + " " + str(next_bus_time[1]))
+        # {"can_catch":true,"time_to_walk":8,"next_bus_time":[20,51]}
 
-        # if busStopName is None:
-        #     busStopName = "Baits One"
-
-        # handler_input.response_builder.speak(busStopName).set_card(
-        #     SimpleCard(SKILL_NAME, speech))
+        if(can_catch):
+            response = "The next bus is arriving at " + str(next_bus_time[0]) + " " + str(next_bus_time[1]) + ". The walk to the bus stop will take about " + str(time_to_walk) + " minutes."
+        else:
+            response = "You are going to miss the next bus. The first bus that you can catch will come at " + str(next_bus_time[0]) + " " + str(next_bus_time[1]) + ". The walk to the bus stop will take about " + str(time_to_walk) + " minutes."
 
         handler_input.response_builder.speak(response).set_should_end_session(True)
         

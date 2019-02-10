@@ -13,7 +13,7 @@
             "codeUri": "lambda/py/lambda_upload",
             "functionName": "ask-custom-bus-checker-2_0-default",
             "handler": "lambda_function.lambda_handler",
-            "revisionId": "aa9a8c67-cbd0-4668-91e9-c089019b6a64",
+            "revisionId": "78955fc3-ce42-4754-a7d1-6ab8b2dd4bdf",
             "runtime": "python3.6"
           }
         ],

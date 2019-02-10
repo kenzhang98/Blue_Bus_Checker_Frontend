@@ -24,7 +24,8 @@
           "samples": [
             "when is the next bus for {busStop}",
             "next bus for {busStop}",
-            "bus information for {busStop}"
+            "bus information for {busStop}",
+            "can I catch the next bus at {busStop}"
           ],
           "slots": [
             {
